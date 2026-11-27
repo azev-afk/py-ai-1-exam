@@ -36,3 +36,31 @@ def add_session(sessions, movies, halls):
         if hall["id"] == hall_id:
             selected_hall = hall
             break
+def show_sessions(sessions, movies, halls):
+    if len(sessions) == 0:
+        print("Список сеансов пуст.")
+        return
+
+    print("\nРасписание сеансов:")
+
+    for session in sessions:
+        movie_name = "Неизвестный фильм"
+        hall_name = "Неизвестный кинозал"
+
+        for movie in movies:
+            if movie["id"] == session["movie_id"]:
+                movie_name = movie["title"]
+                break
+
+        for hall in halls:
+            if hall["id"] == session["hall_id"]:
+                hall_name = hall["name"]
+                break
+
+        print(
+            f'ID: {session["id"]} | '
+            f'Фильм: {movie_name} | '
+            f'Кинозал: {hall_name} | '
+            f'Дата: {session["date"]} | '
+            f'Время: {session["time"]}'
+        )
